@@ -59,6 +59,7 @@ while(cap.isOpened()):
     # finding convexity defects 
     defects = cv2.convexityDefects(cnt,hull)
     count_defects = 0
+    count_right = 0
     cv2.drawContours(thresh1,contours,-1,(0,255,0),3)
 
     #applying cosine rule to find angle for all defects (between fingures)
@@ -82,20 +83,24 @@ while(cap.isOpened()):
         if  angle <= 70:
             count_defects += 1
             cv2.circle(crop_image,far,1,[0,0,255],-1)
+        if 75 <= angle <= 95  :
+            count_right += 1        
 
     # define actions required
-    if count_defects == 1:
-        cv2.putText(img,"every thing is ok",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)            
-    elif count_defects == 2:
-        cv2.putText(img,"you are showing two fingers",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)            
-    elif count_defects == 3:
-        cv2.putText(img,"three",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)            
-    elif count_defects == 4:
-        cv2.putText(img,"four",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)            
-    elif count_defects == 5:
-        cv2.putText(img,"five ",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2) 
+     if count_right >= 1:
+        cv2.putText(img,"All is well",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)  
+    if count_defects == 1 and count_right == 0:
+        cv2.putText(img,"Two fingers",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)            
+    elif count_defects == 2  and count_right == 0:
+        cv2.putText(img," Three fingers",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)            
+    elif count_defects == 3  and count_right == 0:
+        cv2.putText(img,"Four",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)            
+    elif count_defects == 4  and count_right == 0:
+        cv2.putText(img,"Five",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)            
+    elif count_defects == 5  and count_right == 0:
+        cv2.putText(img,"six ",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2) 
     else:
-        cv2.putText(img,"no fingers ",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)                
+        cv2.putText(img,"not detected correctly ",(50,50),cv2.FONT_HERSHEY_SIMPLEX,2,2)                    
                    
     # show apprepropiate image in window 
     cv2.imshow('gesture',img)
