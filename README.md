@@ -16,5 +16,5 @@ This project is detecting motion of your fingers and according to it's gesturing
 <h4>To understand how this works, please read attached pdf, link is given below.</h4>
 
 <ul>
-	<li>https://drive.google.com/file/d/1BkDQS1YTN_CGd7POP1HyEk_EWleP4PUE/view?usp=sharing</li>
+	<li>https://drive.google.com/file/d/1q1wVprPPE0_PhFl17mnt4-_-_d1TQP7R/view?usp=sharing</li>
 </ul> 
